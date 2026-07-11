@@ -1,21 +1,36 @@
 #!/usr/bin/env bash
+# Optional GitHub Packages auth for Cloud Agent / Docker builds.
+# This starter uses public npm deps — missing MY_TOKEN is OK (exit 0).
+
 set -euo pipefail
 
-if [[ -z "${MY_TOKEN:-}" ]]; then
-  echo "error: MY_TOKEN is required (configure it as a Build Secret named MY_TOKEN)" >&2
-  exit 1
+resolve_token() {
+  if [[ -n "${MY_TOKEN:-}" ]]; then
+    printf '%s' "$MY_TOKEN"
+    return 0
+  fi
+  if [[ -f /run/secrets/MY_TOKEN ]]; then
+    tr -d '\r\n' < /run/secrets/MY_TOKEN
+    return 0
+  fi
+  return 1
+}
+
+if TOKEN="$(resolve_token)"; then
+  echo "Configuring GitHub Packages auth from MY_TOKEN..."
+  npm config set "@barabd-tax-software:registry" "https://npm.pkg.github.com"
+  npm config set "//npm.pkg.github.com/:_authToken" "$TOKEN"
+else
+  echo "MY_TOKEN not set — installing from public registry only."
 fi
-
-echo "Configuring private registry access..."
-
-# Configure auth temporarily; removed after install so the token is not baked into the image
-npm config set "@barabd-tax-software:registry" "https://npm.pkg.github.com"
-npm config set "//npm.pkg.github.com/:_authToken" "${MY_TOKEN}"
 
 echo "Installing dependencies..."
 npm ci
 
-npm config delete "//npm.pkg.github.com/:_authToken" || true
-npm config delete "@barabd-tax-software:registry" || true
+if [[ -n "${TOKEN:-}" ]]; then
+  npm config delete "//npm.pkg.github.com/:_authToken" || true
+  npm config delete "@barabd-tax-software:registry" || true
+fi
 
-echo "Private dependency installation complete."
+echo "Dependency installation complete."
+exit 0

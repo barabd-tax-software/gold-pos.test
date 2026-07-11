@@ -14,6 +14,6 @@ COPY package.json package-lock.json ./
 COPY scripts/install-private-deps.sh ./scripts/install-private-deps.sh
 RUN chmod +x ./scripts/install-private-deps.sh
 
-# Mount MY_TOKEN build secret; token is available only during this layer
-RUN --mount=type=secret,id=MY_TOKEN,env=MY_TOKEN,required=true \
+# MY_TOKEN Build Secret is optional (public npm deps; token only for future private packages)
+RUN --mount=type=secret,id=MY_TOKEN,env=MY_TOKEN,required=false \
     ./scripts/install-private-deps.sh
