@@ -6,7 +6,15 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Cursor Cloud specific instructions
 
-Gold POS is a single Next.js 16 (App Router) point-of-sale app for a gold/jewelry shop. Data is persisted in a local SQLite file (`prisma/dev.db`) via Prisma. There is one service to run: the Next.js dev server.
+Gold POS is a single Next.js 16 (App Router) + React 19 + Prisma 6 point-of-sale app for a gold/jewelry shop. Data is persisted in a local SQLite file (`prisma/dev.db`) via Prisma. There is one service to run: the Next.js dev server.
+
+| | |
+|--|--|
+| App | Gold POS — Next.js 16 + React 19 + Prisma 6 |
+| Dependencies | All public npm packages (no private `@barabd-tax-software/*` yet) |
+| Postinstall | Runs `prisma generate` automatically after `npm ci` / `npm install` |
+
+Cloud Agent Docker mounts optional Build Secret `MY_TOKEN` (`required=false`) for future private GitHub Packages; builds succeed without it today.
 
 Standard commands live in `package.json` scripts (`dev`, `build`, `lint`, `db:setup`, `db:seed`). Non-obvious caveats for this repo:
 
