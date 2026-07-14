@@ -1,0 +1,96 @@
+{
+	"folders": [
+		{
+			"path": "../gold-pos"
+		},
+		{
+			"path": "../gold-pos/vendor"
+		},
+		{
+			"path": "../gold-pos/tests"
+		},
+		{
+			"path": "../gold-pos/tasks"
+		},
+		{
+			"path": "../gold-pos/storage"
+		},
+		{
+			"path": "../gold-pos/scripts"
+		},
+		{
+			"path": "../gold-pos/routes"
+		},
+		{
+			"path": "../gold-pos/resources"
+		},
+		{
+			"path": "../gold-pos/public"
+		},
+		{
+			"path": "../gold-pos/pos"
+		},
+		{
+			"path": "../gold-pos/node_modules"
+		},
+		{
+			"path": "../gold-pos/img"
+		},
+		{
+			"path": "../gold-pos/docs"
+		},
+		{
+			"path": "../gold-pos/database"
+		},
+		{
+			"path": "../gold-pos/config"
+		},
+		{
+			"path": "../gold-pos/bootstrap"
+		},
+		{
+			"path": "../gold-pos/barabd-landing"
+		},
+		{
+			"path": "../gold-pos/app"
+		},
+		{
+			"path": "../gold-pos/.vscode"
+		},
+		{
+			"path": "../gold-pos/.php-workbench"
+		},
+		{
+			"path": "../gold-pos/.github"
+		},
+		{
+			"path": "../gold-pos/.cursor"
+		}
+	],
+	"settings": {
+		"phpWorkbench.timeout": 60,
+		"terminal.integrated.env.windows": {
+			"Path": "C:\\Users\\hp\\.config\\herd\\bin\\php82;C:\\Users\\hp\\.config\\herd\\bin;${env:Path}",
+			"PHPRC": "C:\\Users\\hp\\.config\\herd\\bin\\php82"
+		},
+		"window.commandCenter": true,
+		"terminal.integrated.defaultProfile.windows": "PHP (Herd)",
+		"terminal.integrated.profiles.windows": {
+			"PHP (Herd)": {
+				"path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+				"args": [
+					"-NoExit",
+					"-Command",
+					"$env:Path = 'C:\\Users\\hp\\.config\\herd\\bin;C:\\Users\\hp\\.config\\herd\\bin\\php82;' + $env:Path; Set-Location '${workspaceFolder}'; Write-Host 'PHP / Herd terminal' -ForegroundColor DarkYellow; php -v | Select-Object -First 1"
+				],
+				"icon": "terminal",
+				"color": "terminal.ansiYellow"
+			},
+			"PowerShell": {
+				"source": "PowerShell",
+				"icon": "terminal-powershell",
+				"color": "terminal.ansiBlue"
+			}
+		}
+	}
+}
